@@ -1,1 +1,3 @@
-build/msvc*
+build/*
+!build/*/last-build-*.bat
+!build/*/last-build-*.sh
