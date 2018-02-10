@@ -1,9 +1,9 @@
 #include "last_parser.h"
 
-CLastParser::CLastParser()
+LastParser::LastParser()
 {
 }
 
-CLastParser::~CLastParser()
+LastParser::~LastParser()
 {
 }
