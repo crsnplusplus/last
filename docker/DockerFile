@@ -1,0 +1,19 @@
+FROM ubuntu:latest
+MAINTAINER crsnplusplus <crsnplusplus@gmail.com>
+
+RUN apt-get update
+RUN apt-get install -y binutils gcc g++ binutils cmake git-core
+
+RUN rm -rf /var/lib/apt/lists/*
+
+WORKDIR /home/projects/
+
+RUN git clone -b development/structure https://github.com/crsnplusplus/last.git
+
+WORKDIR /home/projects/last/
+RUN ls -ll
+
+WORKDIR /home/projects/last/build/make/
+
+RUN cmake -G "Unix Makefiles" ../..
+RUN make
