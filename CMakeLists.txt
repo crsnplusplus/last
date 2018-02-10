@@ -15,9 +15,13 @@ configure_file (
 # Must use GNUInstallDirs to install libraries into correct locations on all platforms.
 include(GNUInstallDirs)
 
-# add the binary tree to the search path for include files so that we will find last headers
-include_directories("${PROJECT_BINARY_DIR}")
-include_directories(src/)
+# add the binary tree to the search path for include files so that we will find lastconfig.h
+SET (LAST_INCLUDES
+	"${PROJECT_BINARY_DIR}"
+	src/
+)
+
+include_directories(${LAST_INCLUDES})
 
 SET(SOURCE
 	src/last_ast.cpp
@@ -40,9 +44,9 @@ add_executable(last src/main.cpp)
 target_link_libraries(last liblast)
 
 # Testing support
-include(cmake/googletest.cmake)
+#include(cmake/googletest.cmake)
 
 # Test list
-add_executable(last-test-runner tests/last-test-runner.cpp)
-target_link_libraries(last-test-runner liblast gtest gmock_main)
-add_test(NAME last-test-runner_test COMMAND last-test-runner)
+#add_executable(last-test-runner tests/last-test-runner.cpp)
+#target_link_libraries(last-test-runner liblast gtest gmock_main)
+#add_test(NAME last-test-runner_test COMMAND last-test-runner)
