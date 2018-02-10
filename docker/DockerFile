@@ -17,4 +17,3 @@ WORKDIR /home/projects/last/build/make/
 
 RUN cmake -G "Unix Makefiles" ../..
 RUN make
-RUN ./last
