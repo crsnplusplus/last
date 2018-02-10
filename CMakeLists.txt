@@ -6,25 +6,18 @@ project (${PROJECT_NAME})
 set (last_VERSION_MAJOR 0)
 set (last_VERSION_MINOR 1)
 
-# configure a header file to pass some of the CMake settings
-# to the source code
+# configure a header file to pass some of the CMake settings to the source code
 configure_file (
   "${PROJECT_SOURCE_DIR}/src/lastconfig.h.in"
   "${PROJECT_BINARY_DIR}/src/lastconfig.h"
 )
 
-# Must use GNUInstallDirs to install libraries into correct
-# locations on all platforms.
+# Must use GNUInstallDirs to install libraries into correct locations on all platforms.
 include(GNUInstallDirs)
 
-# add the binary tree to the search path for include files
-# so that we will find last headers
+# add the binary tree to the search path for include files so that we will find last headers
 include_directories("${PROJECT_BINARY_DIR}")
 include_directories(src/)
-
-# Define library. Only source files here!
-cmake_minimum_required (VERSION 2.6)
-project(liblast LANGUAGES CXX)
 
 SET(SOURCE
 	src/last_ast.cpp
@@ -49,7 +42,7 @@ target_link_libraries(last liblast)
 # Testing support
 include(cmake/googletest.cmake)
 
-# Trivial example using gtest and gmock
+# Test list
 add_executable(last-test-runner tests/last-test-runner.cpp)
 target_link_libraries(last-test-runner liblast gtest gmock_main)
 add_test(NAME last-test-runner_test COMMAND last-test-runner)
