@@ -17,8 +17,8 @@ include(GNUInstallDirs)
 
 # add the binary tree to the search path for include files so that we will find lastconfig.h
 SET (LAST_INCLUDES
-	"${PROJECT_BINARY_DIR}"
-	src/
+	${PROJECT_BINARY_DIR}/src
+	${PROJECT_SOURCE_DIR}/src
 )
 
 include_directories(${LAST_INCLUDES})

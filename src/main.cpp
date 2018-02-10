@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "lastconfig.h"
+#include <lastconfig.h>
  
 int main (int argc, char *argv[])
 {
