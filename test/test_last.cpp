@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
-#include "gmock/gmock.h"
+#include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include <last_parser.h>
 
 // Runner
