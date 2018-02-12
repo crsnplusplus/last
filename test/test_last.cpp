@@ -2,7 +2,7 @@
 #include <gmock/gmock.h>
 #include <last_parser.h>
 
-// Runner
+// runner
 TEST(LastTest, Runner)
 {
 	EXPECT_EQ(1, 1);
