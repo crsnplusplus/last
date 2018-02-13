@@ -25,7 +25,7 @@ TEST(LastTest, ParserCtorDtor)
 TEST(LastTest, ParserCtorDtor2)
 {
   LastParser Parser;
-  LastParser ParserWithArgs("1 + 2");
+  LastParser ParserWithArgs(TEST_EXPRESSION2);
 }
 
 // parser - set/get expression
