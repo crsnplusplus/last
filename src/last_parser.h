@@ -16,6 +16,9 @@ class LastParser
     bool Parse();
     
   private:
+    bool Scan();
+
+  private:
 	  std::string m_Expression;
 };
 

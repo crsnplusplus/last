@@ -1,5 +1,6 @@
 #include "last_parser.h"
 #include "last_token.h"
+#include "last_utils.h"
 #include <vector>
 
 LastParser::LastParser()
@@ -26,6 +27,20 @@ std::string LastParser::GetLiteralExpression() const
 }
 
 bool LastParser::Parse()
+{
+  bool Result = Scan();
+  
+  if (Result == false)
+  {
+    LastPrintMessage("Parser: scan failed");
+    return false;
+  }
+
+  
+
+}
+
+bool LastParser::Scan()
 {
   auto itExpression = m_Expression.cbegin();
   auto itExpressionEnd = m_Expression.cend();
