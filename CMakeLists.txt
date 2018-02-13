@@ -28,7 +28,7 @@ SET (LAST_INCLUDES
 include_directories(${LAST_INCLUDES})
 
 SET(SOURCE
-	src/last_ast.cpp
+	src/last_ast_node.cpp
 	src/last_evaluator.cpp
 	src/last_parser.cpp
 	src/last_token.cpp
@@ -36,7 +36,7 @@ SET(SOURCE
 )
 
 SET(HEADERS
-	src/last_ast.h
+	src/last_ast_node.h
 	src/last_evaluator.h
 	src/last_parser.h
 	src/last_token.h
