@@ -32,13 +32,15 @@ SET(SOURCE
 	src/last_evaluator.cpp
 	src/last_parser.cpp
 	src/last_token.cpp
-	)
+	src/last_utils.cpp
+)
 
 SET(HEADERS
 	src/last_ast.h
 	src/last_evaluator.h
 	src/last_parser.h
 	src/last_token.h
+	src/last_utils.h
 )
 
 add_library(liblast
