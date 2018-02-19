@@ -7,16 +7,18 @@ class LastParser
 {
 	public:
 		LastParser();
-    LastParser(const std::string& literal_expression);
+    LastParser(const std::string& LiteralExpression);
 		virtual ~LastParser();
 
-		void SetLiteralExpression(const std::string& literal_expression);
+		void SetLiteralExpression(const std::string& LiteralExpression);
 		std::string GetLiteralExpression() const;
 
     bool Parse();
     
   private:
     bool Scan();
+    bool CreateAST();
+    bool ParseExpression(std::string Expression);
 
   private:
 	  std::string m_Expression;

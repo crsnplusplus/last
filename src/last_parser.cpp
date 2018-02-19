@@ -1,5 +1,6 @@
 #include "last_parser.h"
 #include "last_token.h"
+#include "last_ast_node.h"
 #include "last_utils.h"
 #include <vector>
 
@@ -16,9 +17,9 @@ LastParser::~LastParser()
 {
 }
 
-void LastParser::SetLiteralExpression(const std::string & Expression)
+void LastParser::SetLiteralExpression(const std::string & LiteralExpression)
 {
-  m_Expression = Expression;
+  m_Expression = LiteralExpression;
 }
 
 std::string LastParser::GetLiteralExpression() const
@@ -60,4 +61,44 @@ bool LastParser::Scan()
   }
 
   return ScanningResult;
+}
+
+
+
+bool LastParser::CreateAST()
+{
+  return true;
+}
+
+bool LastParser::ParseExpression(std::string Expression)
+{
+  LastNode* Node = nullptr;
+
+  for (char CurrentChar : Expression)
+  {
+    switch (CurrentChar) {
+    case ' ':
+      // skipping spaces
+      continue;
+
+    case '(':
+      break;
+
+    case ')':
+      break;
+
+    case '+': case '-': case '*': case '/':
+      break;
+
+    case '0': case '1': case '2': case '3': case '4':
+    case '5': case '6': case '7': case '8': case '9': 
+      Node = new LastNodeNumber(CurrentChar - '0');
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  return false;
 }
