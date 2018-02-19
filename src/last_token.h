@@ -1,25 +1,23 @@
 #ifndef __LAST_TOKEN_H__
 #define __LAST_TOKEN_H__
 
-enum ETokenType
-{
-  token_unknown,
-  token_opened_parenthesys, token_closed_parenthesys,
-  token_add, token_subtract, token_multiply, token_divide,
-  token_number
+class CToken {
+  CToken() {}
 };
 
-class LastToken
-{
-  public:
-    LastToken(char LiteralValue = '#') : m_Literal(LiteralValue) { }
-    virtual ~LastToken() = default;
+class CTokenNumber : public CToken {
+};
 
-    ETokenType GetType() const;
-    int GetValue() const { return GetType() == token_number ? m_Literal - '0' : -1; }
+class CTokenOperation: public CToken {
+};
 
-  private:
-    char m_Literal;
+class CTokenPlus : public CToken {
+};
+
+class CTokenStar : public CToken {
+};
+
+class CParenthesys : public CToken {
 };
 
 #endif // __LAST_TOKEN_H__

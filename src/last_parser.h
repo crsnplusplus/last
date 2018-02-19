@@ -1,27 +1,83 @@
-#ifndef __LAST_PARSER_H__
-#define __LAST_PARSER_H__
+#ifndef PARSER_H_INCLUDED
+#define PARSER_H_INCLUDED
 
-#include <string>
+#include <istream>
+#include <deque>
+#include <exception>
 
-class LastParser
-{
-	public:
-		LastParser();
-    LastParser(const std::string& LiteralExpression);
-		virtual ~LastParser();
+//pre-declare are classes so they can be used in a non-discriminate order
+class Production;
+class Expr;
+class Term;
+class Unary;
+class Number;
+class Factor;
+class ParseError;
 
-		void SetLiteralExpression(const std::string& LiteralExpression);
-		std::string GetLiteralExpression() const;
-
-    bool Parse();
-    
-  private:
-    bool Scan();
-    bool CreateAST();
-    bool ParseExpression(std::string Expression);
-
-  private:
-	  std::string m_Expression;
+// the base class for all of our productions
+class Production {
+public:
+  virtual ~Production(); //dose nothing, if we don't need to override it we don't want to
+  virtual double getValue() = 0; //pure virtual, all children MUST implmnet this function
 };
 
-#endif // __LAST_PARSER_H__
+// a class to parse a number from the input stream
+class Number : public Production {
+private:
+  double value;
+public:
+  Number(std::istream& in);
+  double getValue();
+};
+
+// a class to parse a factor from the input stream
+class Factor : public Production {
+private:
+  Production * expr; //we need to use a Production pointer in order handle the dual behavoir of factors
+public:
+  Factor(std::istream& in);
+  ~Factor();
+  double getValue();
+};
+
+/**
+* a class to parse unary operators and operands from an input stream
+*/
+class Unary : public Production {
+private:
+  int sign;
+  Factor* value;
+public:
+  Unary(std::istream& in);
+  ~Unary();
+  double getValue();
+};
+
+/**
+* a class to parse binary operators(* and /) and operands from the input stream
+*/
+class Term : public Production {
+public:
+  Term(std::istream& in);
+  ~Term();
+  double getValue();
+private:
+  std::deque<Unary*> values;
+  std::deque<char> ops;
+};
+
+// a class to parse binary operators(+ and -) and operands from the input stream, acts as the full expreison parser becuase + and - have the lowest precdence.
+// this code works just like Term only it uses the + and - operators instead.
+class Expr : public Production {
+private:
+  std::deque<Term*> values;
+  std::deque<char> ops;
+public:
+  Expr(std::istream& in);
+  ///Override
+  ~Expr();
+  ///Override
+  double getValue();
+};
+
+#endif // PARSER_H_INCLUDED

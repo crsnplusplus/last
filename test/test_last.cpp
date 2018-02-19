@@ -1,12 +1,18 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <last_parser.h>
+
+#include <lexer.h>
+#include <expression.h>
 
 std::string TEST_EXPRESSION0 = "";
 std::string TEST_EXPRESSION1 = "1";
 std::string TEST_EXPRESSION2 = "1 + 2";
+std::string TEST_EXPRESSION2b= "1 * 2";
 std::string TEST_EXPRESSION3 = "(1 + 2) * 3";
 std::string TEST_EXPRESSION4 = " (1  +  2)  *  3 ";
+std::string TEST_EXPRESSION5 = " ((1  +  2 ) + 3  *  4)";
+std::string TEST_EXPRESSION_E1 = "(4 + 5 * (7 - 3)) - 2"; // 22
+std::string TEST_EXPRESSION_E2 = "4 + 5 + 7 / 2"; // 12
 
 // runner
 TEST(LastTest, Runner)
@@ -14,44 +20,35 @@ TEST(LastTest, Runner)
 	EXPECT_EQ(1, 1);
 }
 
-// parser ctor/dtor
-TEST(LastTest, ParserCtorDtor)
+TEST(LastTest, Production1)
 {
-	LastParser* Parser = new LastParser;
-	delete Parser;
-}
-
-// parser ctor/dtor
-TEST(LastTest, ParserCtorDtor2)
-{
-  LastParser Parser;
-  LastParser ParserWithArgs(TEST_EXPRESSION2);
-}
-
-// parser - set/get expression
-TEST(LastTest, ParserGetSetExpression)
-{
-	LastParser Parser;
-  Parser.SetLiteralExpression(TEST_EXPRESSION1);
-  EXPECT_STRCASEEQ(Parser.GetLiteralExpression().c_str(), TEST_EXPRESSION1.c_str());
-
-  LastParser Parser2(TEST_EXPRESSION1);
-  EXPECT_STRCASEEQ(Parser2.GetLiteralExpression().c_str(), TEST_EXPRESSION1.c_str());
-}
-
-TEST(LastTest, ParserParse)
-{
-  LastParser Parser;
-  Parser.SetLiteralExpression(TEST_EXPRESSION0);
-  EXPECT_FALSE(Parser.Parse());
-  Parser.SetLiteralExpression(TEST_EXPRESSION1);
-  EXPECT_TRUE(Parser.Parse());
-  Parser.SetLiteralExpression(TEST_EXPRESSION2);
-  EXPECT_TRUE(Parser.Parse());
-  Parser.SetLiteralExpression(TEST_EXPRESSION3);
-  EXPECT_TRUE(Parser.Parse());
-  Parser.SetLiteralExpression(TEST_EXPRESSION4);
-  EXPECT_TRUE(Parser.Parse());
+  Lexer lex(TEST_EXPRESSION1);
+  Expression expr(lex); //construct the parse tree
+  int value = expr.getValue();
+  EXPECT_EQ(value, 1);
 }
 
 
+TEST(LastTest, Production2)
+{
+  Lexer lex(TEST_EXPRESSION2b);
+  Expression expr(lex); //construct the parse tree
+  int value = expr.getValue();
+  EXPECT_EQ(value, 2);
+}
+
+TEST(LastTest, Production6)
+{
+  Lexer lex(TEST_EXPRESSION_E1);
+  Expression expr(lex); //construct the parse tree
+  int value = expr.getValue();
+  EXPECT_EQ(value, 22);
+}
+
+TEST(LastTest, Production7)
+{
+  Lexer lex(TEST_EXPRESSION_E2);
+  Expression expr(lex); //construct the parse tree
+  int value = expr.getValue();
+  EXPECT_EQ(value, 12);
+}

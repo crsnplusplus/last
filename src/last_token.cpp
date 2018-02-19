@@ -1,3 +1,4 @@
+/*
 #include "last_token.h"
 
 ETokenType LastToken::GetType() const
@@ -22,3 +23,4 @@ ETokenType LastToken::GetType() const
 
   return tokenType;
 }
+*/

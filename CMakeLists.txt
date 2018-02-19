@@ -28,19 +28,23 @@ SET (LAST_INCLUDES
 include_directories(${LAST_INCLUDES})
 
 SET(SOURCE
-	src/last_ast_node.cpp
-	src/last_evaluator.cpp
-	src/last_parser.cpp
-	src/last_token.cpp
-	src/last_utils.cpp
+	src/expression.cpp
+	src/factor.cpp
+	src/lexer.cpp
+	src/number.cpp
+	src/production.cpp
+	src/term.cpp
+	src/unary.cpp
 )
 
 SET(HEADERS
-	src/last_ast_node.h
-	src/last_evaluator.h
-	src/last_parser.h
-	src/last_token.h
-	src/last_utils.h
+	src/expression.h
+	src/factor.h
+	src/lexer.h
+	src/number.h
+	src/production.h
+	src/term.h
+	src/unary.h
 )
 
 add_library(liblast
