@@ -10,7 +10,8 @@ Lexer::Lexer(std::string& s)
 char Lexer::getNext()
 {
   consumeSpaces();
-  char val = m_text[m_pos++];
+  char val = m_text[m_pos];
+  ++m_pos;
   consumeSpaces();
   return val;
 }
@@ -36,8 +37,7 @@ char Lexer::peekNext()
     return m_text[i];
   }
 
-  //assert (false);
-  return -1;
+  return 0;
 }
 
 void Lexer::consumeSpaces()

@@ -4,8 +4,7 @@
 Expression::Expression(Lexer& lex) {
   values.push_back(new Term(lex));
 
-  char next = lex.peekNext();
-  if (next == '+' || next == '-') {
+  while (lex.peekNext() == '+' || lex.peekNext() == '-') {
       ops.push_back(lex.getNext());
       values.push_back(new Term(lex));
   }

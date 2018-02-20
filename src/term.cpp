@@ -4,8 +4,7 @@
 Term::Term(Lexer& lex) {
   values.push_back(new Unary(lex)); //construct the first value
   
-  char next = lex.peekNext();
-  if (next == '*' || next == '/') {
+  while (lex.peekNext() == '*' || lex.peekNext() == '/') {
     ops.push_back(lex.getNext()); //push back the operator
     values.push_back(new Unary(lex)); //push back the left operand
   }

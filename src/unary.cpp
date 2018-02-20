@@ -2,10 +2,9 @@
 #include "factor.h"
 
 Unary::Unary(Lexer& lex) {
-  sign = 1; //initlize sign to 1
+  sign = 1;
   
-  char next = lex.peekNext();
-  if (next == '-' || next == '+') { //while we have an operator to parse
+  while (lex.peekNext() == '-' || lex.peekNext() == '+') { //while we have an operator to parse // @todo change if to while
     if (lex.getNext() == '-') { //if the operator actully has an effect
       sign = -sign;
     }
