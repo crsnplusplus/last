@@ -14,8 +14,7 @@ class Unary : public Production
     int getValue();
 
   private:
-    int sign;
-    Factor* value;
+    Factor* m_value;
 };
 
 #endif // __LAST_UNARY_H__

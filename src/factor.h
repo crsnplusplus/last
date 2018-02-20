@@ -12,7 +12,7 @@ class Factor : public Production
     int getValue();
 
   private:
-    Production* expr;
+    Production* m_expr;
 };
 
 #endif // __LAST_FACTOR_H__

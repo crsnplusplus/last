@@ -1,9 +1,9 @@
 #include "number.h"
 
 Number::Number(Lexer& lex) {
-  value = lex.getNextAsNumber();
+  m_value = lex.getNextAsNumber();
 }
 
 int Number::getValue() {
-  return value;
+  return m_value;
 }

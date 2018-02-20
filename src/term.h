@@ -17,8 +17,8 @@ class Term : public Production
     int getValue();
 
   private:
-    std::deque<Unary*> values;
-    std::deque<char> ops;
+    std::deque<Unary*> m_values;
+    std::deque<char> m_operators;
 };
 
 #endif // __LAST_TERM_H__

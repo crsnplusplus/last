@@ -10,7 +10,7 @@ class Number : public Production
     int getValue();
 
   private:
-    int value;
+    int m_value;
 };
 
 #endif // __LAST_NUMBER_H__

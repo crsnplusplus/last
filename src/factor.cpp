@@ -6,7 +6,7 @@ Factor::Factor(Lexer& lex) {
   
   if (lex.peekNext() == '(') {
     lex.getNext();
-    expr = new Expression(lex);
+    m_expr = new Expression(lex);
 
     if (lex.peekNext() != ')') {
       throw ParseError();
@@ -16,15 +16,15 @@ Factor::Factor(Lexer& lex) {
     }
   }
   else {
-    expr = new Number(lex);
+    m_expr = new Number(lex);
   }
 }
 
 Factor::~Factor()
 {
-  delete expr;
+  delete m_expr;
 }
 
 int Factor::getValue() {
-  return expr->getValue();
+  return m_expr->getValue();
 }

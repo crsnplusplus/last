@@ -1,29 +1,31 @@
 #include "expression.h"
 #include "term.h"
 
+#include <assert.h>
+
 Expression::Expression(Lexer& lex) {
-  values.push_back(new Term(lex));
+  m_values.push_back(new Term(lex));
 
   while (lex.peekNext() == '+' || lex.peekNext() == '-') {
-      ops.push_back(lex.getNext());
-      values.push_back(new Term(lex));
+      m_operators.push_back(lex.getNext());
+      m_values.push_back(new Term(lex));
   }
 }
 
 Expression::~Expression() {
-  for (unsigned int i = 0; i<values.size(); ++i) {
-    delete values[i];
+  for (size_t i = 0; i < m_values.size(); ++i) {
+    delete m_values[i];
   }
 }
 
 int Expression::getValue() {
-  int ret = values[0]->getValue();
-  for (unsigned int i = 1; i<values.size(); ++i) {
-    if (ops[i - 1] == '+') {
-      ret += values[i]->getValue();
+  int ret = m_values[0]->getValue();
+  for (size_t i = 1; i < m_values.size(); ++i) {
+    if (m_operators[i - 1] == '+') {
+      ret += m_values[i]->getValue();
     }
     else {
-      ret -= values[i]->getValue();
+      ret -= m_values[i]->getValue();
     }
   }
   return ret;

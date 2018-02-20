@@ -15,8 +15,8 @@ class Expression : public Production {
     int getValue();
 
   private:
-    std::deque<Term*> values;
-    std::deque<char> ops;
+    std::deque<Term*> m_values;
+    std::deque<char> m_operators;
 };
 
 #endif __LAST_EXPRESSION_H__

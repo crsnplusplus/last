@@ -8,13 +8,13 @@ Unary::Unary(Lexer& lex) {
     }
   }
 
-  value = new Factor(lex);
+  m_value = new Factor(lex);
 }
 
 Unary::~Unary() {
-  delete value;
+  delete m_value;
 }
 
 int Unary::getValue() {
-  return sign * value->getValue();
+  return m_value->getValue();
 }
