@@ -14,6 +14,9 @@ std::string TEST_EXPRESSION5 = " ((1  +  2 ) + 3  *  4)";
 std::string TEST_EXPRESSION_E1 = "(4 + 5 * (7 - 3)) - 2"; // 22
 std::string TEST_EXPRESSION_E2 = "4 + 5 + 7 / 2"; // 12
 
+std::string TEST_EXPRESSION_FAIL0 = "-1";
+std::string TEST_EXPRESSION_FAIL1 = "-10";
+
 // runner
 TEST(LastTest, Runner)
 {
@@ -23,7 +26,7 @@ TEST(LastTest, Runner)
 TEST(LastTest, Production1)
 {
   Lexer lex(TEST_EXPRESSION1);
-  Expression expr(lex); //construct the parse tree
+  Expression expr(lex);
   int value = expr.getValue();
   EXPECT_EQ(value, 1);
 }
@@ -32,7 +35,7 @@ TEST(LastTest, Production1)
 TEST(LastTest, Production2)
 {
   Lexer lex(TEST_EXPRESSION2b);
-  Expression expr(lex); //construct the parse tree
+  Expression expr(lex);
   int value = expr.getValue();
   EXPECT_EQ(value, 2);
 }
@@ -40,7 +43,7 @@ TEST(LastTest, Production2)
 TEST(LastTest, Production6)
 {
   Lexer lex(TEST_EXPRESSION_E1);
-  Expression expr(lex); //construct the parse tree
+  Expression expr(lex);
   int value = expr.getValue();
   EXPECT_EQ(value, 22);
 }
@@ -48,7 +51,25 @@ TEST(LastTest, Production6)
 TEST(LastTest, Production7)
 {
   Lexer lex(TEST_EXPRESSION_E2);
-  Expression expr(lex); //construct the parse tree
+  Expression expr(lex);
   int value = expr.getValue();
   EXPECT_EQ(value, 12);
+}
+
+TEST(LastTest, ParseError1)
+{
+  Lexer lex(TEST_EXPRESSION_FAIL0);
+  EXPECT_THROW({
+    Expression expr(lex);
+    int value = expr.getValue();
+  }, ParseError);
+}
+
+TEST(LastTest, ParseError2)
+{
+  Lexer lex(TEST_EXPRESSION_FAIL1);
+  EXPECT_THROW({
+    Expression expr(lex);
+    int value = expr.getValue();
+    }, ParseError);
 }
