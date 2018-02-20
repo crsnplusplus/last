@@ -17,7 +17,7 @@ int main (int argc, char *argv[])
             last_VERSION_MAJOR,
             last_VERSION_MINOR);
     fprintf(stdout,"Usage: %s number\n",argv[0]);
-    return 1;
+    return EXIT_FAILURE;
   }
 
   std::string expression;
