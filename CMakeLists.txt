@@ -28,29 +28,21 @@ SET (LAST_INCLUDES
 include_directories(${LAST_INCLUDES})
 
 SET(SOURCE
-#	src/parse_tree/expression.cpp
-#	src/parse_tree/factor.cpp
-#	src/parse_tree/number.cpp
-#	src/parse_tree/production.cpp
-#	src/parse_tree/term.cpp
-#	src/parse_tree/unary.cpp
 	src/interpreter.cpp
 	src/lexer.cpp
 	src/last_exceptions.cpp
+	src/node_bop.cpp
+	src/node_number.cpp
 	src/parser.cpp
 )
 
 SET(HEADERS
-#	src/parse_tree/expression.h
-#	src/parse_tree/factor.h
-#	src/parse_tree/number.h
-#	src/parse_tree/production.h
-#	src/parse_tree/term.h
-#	src/parse_tree/unary.h
-	src/ast_node.h
 	src/interpreter.h
 	src/last_exceptions.h
 	src/lexer.h
+	src/node_ast.h
+	src/node_bop.h
+	src/node_number.h
 	src/parser.h
 )
 
