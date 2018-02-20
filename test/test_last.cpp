@@ -7,9 +7,11 @@
 #include <last_exceptions.h>
 
 std::string TEST_EXPRESSION_EMPTY = "";
-std::string TEST_EXPRESSION_FAIL0 = "-1";
-std::string TEST_EXPRESSION_FAIL1 = "-10";
-std::string TEST_EXPRESSION_FAIL2 = "42";
+std::string TEST_EXPRESSION_FAIL1 = "-1";
+std::string TEST_EXPRESSION_FAIL2 = "-10";
+std::string TEST_EXPRESSION_FAIL3 = "42";
+std::string TEST_EXPRESSION_0DIV = "0/4";
+std::string TEST_EXPRESSION_DIV0 = "2/0";
 
 struct TestData {
   std::string expression;
@@ -18,8 +20,8 @@ struct TestData {
 
 TestData tests[] = {
     { "1", 1 }, // 0
-    { "1 + 2", 3 }, // 1
-    { "1 * 3", 3 }, // 2
+    { "4 + 2", 6 }, // 1
+    { "4 * 2", 8 }, // 2
     { "(1 + 2) * 3", 9 }, // 3
     { " (1  +  2)  *  3 ", 9 }, // 4
     { " ((1  +  2 ) + 3  *  4)", 15 }, // 5
@@ -149,7 +151,7 @@ TEST(LastTest, InterpreterEmpty)
 
 TEST(LastTest, InterpreterFail1)
 {
-  Lexer lex(TEST_EXPRESSION_FAIL0);
+  Lexer lex(TEST_EXPRESSION_FAIL1);
   Parser parser(&lex);
 
   EXPECT_THROW({
@@ -159,7 +161,7 @@ TEST(LastTest, InterpreterFail1)
 
 TEST(LastTest, InterpreterFail2)
 {
-  Lexer lex(TEST_EXPRESSION_FAIL1);
+  Lexer lex(TEST_EXPRESSION_FAIL2);
   Parser parser(&lex);
 
   EXPECT_THROW({
@@ -169,10 +171,35 @@ TEST(LastTest, InterpreterFail2)
 
 TEST(LastTest, InterpreterFail3)
 {
-  Lexer lex(TEST_EXPRESSION_FAIL2);
+  Lexer lex(TEST_EXPRESSION_FAIL3);
   Parser parser(&lex);
 
   EXPECT_THROW({
     parser.parse();
     }, ParseExceptionLiteralTooLong);
+}
+
+TEST(LastTest, InterpreterFail0Div)
+{
+  Lexer lex(TEST_EXPRESSION_0DIV);
+  Parser parser(&lex);
+  Interpreter interpreter;
+
+  NodeAST* root = parser.parse();
+  int value = interpreter.evaluate(root);
+
+  EXPECT_EQ(value, 0);
+}
+
+TEST(LastTest, InterpreterFailDiv0)
+{
+  Lexer lex(TEST_EXPRESSION_DIV0);
+  Parser parser(&lex);
+  Interpreter interpreter;
+
+  NodeAST* root = parser.parse();
+
+  EXPECT_THROW({
+    interpreter.evaluate(root);
+  }, InterpreterExceptionDividedByZero);
 }

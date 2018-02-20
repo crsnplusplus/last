@@ -2,6 +2,8 @@
 #include "ast_node.h"
 #include "parser.h"
 
+#include "last_exceptions.h"
+
 #include <assert.h>
 
 Interpreter::Interpreter()
@@ -22,8 +24,15 @@ int Interpreter::visit(NodeBinaryOperator* node)
       return (left->accept(*this)) - (right->accept(*this));
     case '*':
       return (left->accept(*this)) * (right->accept(*this));
-    case '/':
-      return (left->accept(*this)) / (right->accept(*this));
+    case '/': {
+      int lhs = left->accept(*this);
+      int rhs = right->accept(*this);
+      if (rhs == 0) {
+        // nice to have :)
+        throw InterpreterExceptionDividedByZero();
+      }
+      return lhs / rhs;
+    }
   }
 
   assert(false);

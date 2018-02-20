@@ -3,15 +3,23 @@
 
 #include <exception>
 
-class ParseException : public std::exception {
+class LastException : public std::exception {
   const char* what() const throw();
 };
 
-class ParseExceptionUnaryMinusNotPermitted : public ParseException {
+class ParseException : public LastException {
   const char* what() const throw();
 };
 
-class ParseExceptionLiteralTooLong : public ParseException {
+class ParseExceptionUnaryMinusNotPermitted : public LastException {
+  const char* what() const throw();
+};
+
+class ParseExceptionLiteralTooLong : public LastException {
+  const char* what() const throw();
+};
+
+class InterpreterExceptionDividedByZero : public LastException {
   const char* what() const throw();
 };
 

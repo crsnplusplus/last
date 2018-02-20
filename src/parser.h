@@ -11,7 +11,7 @@ class Parser {
     NodeAST* parse();
 
   private:
-    void eat(char c);
+    void consume(char c);
     NodeAST* factor();
     NodeAST* term();
     NodeAST* expression();

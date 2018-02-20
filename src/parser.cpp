@@ -16,7 +16,7 @@ NodeAST* Parser::parse()
   return expression();
 }
 
-void Parser::eat(char c)
+void Parser::consume(char c)
 {
   if (m_current == c)
     m_current = m_lex->getNext();
@@ -32,18 +32,18 @@ NodeAST* Parser::factor()
   if (isdigit(current)) {
     if (isdigit(m_lex->peekNext())) {
       // next is digit too, throwing exception
-      // (only single digit is supporte)
+      // (only single digit is supported)
       throw ParseExceptionLiteralTooLong();
     }
 
-    eat(current);
+    consume(current);
 
     return new NodeNumber(current);
   }
   else if (current == '(') {
-    eat('(');
+    consume(current);
     NodeAST* node = expression();
-    eat(')');
+    consume(')');
     return node;
   }
   else if (current == '-') {
@@ -60,12 +60,7 @@ NodeAST* Parser::term()
   NodeAST* node = factor();
   while (m_current == '*' || m_current == '/') {
     char current = m_current;
-    if (current == '*') {
-      eat('*');
-    }
-    else if (current == '/') {
-      eat('/');
-    }
+    consume(current);
 
     NodeAST* newNode = new NodeBinaryOperator(node, current, term());
     node = newNode;
@@ -80,12 +75,7 @@ NodeAST* Parser::expression()
   NodeAST* node = term();
   while (m_current == '+' || m_current == '-') {
     char current = m_current;
-    if (current == '+') {
-      eat('+');
-    }
-    else if (current == '-') {
-      eat('-');
-    }
+    consume(current);
 
     NodeAST* newNode = new NodeBinaryOperator(node, current, term());
     node = newNode;

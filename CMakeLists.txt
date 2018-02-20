@@ -36,6 +36,7 @@ SET(SOURCE
 #	src/parse_tree/unary.cpp
 	src/interpreter.cpp
 	src/lexer.cpp
+	src/last_exceptions.cpp
 	src/parser.cpp
 )
 
