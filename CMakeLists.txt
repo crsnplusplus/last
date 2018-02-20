@@ -3,8 +3,8 @@ set(PROJECT_NAME last)
 project (${PROJECT_NAME})
 
 # The version number.
-set (last_VERSION_MAJOR 0)
-set (last_VERSION_MINOR 1)
+set (last_VERSION_MAJOR 1)
+set (last_VERSION_MINOR 0)
 
 # configure a header file to pass some of the CMake settings to the source code
 configure_file (
