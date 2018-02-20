@@ -9,7 +9,6 @@ class Lexer {
     virtual ~Lexer();
 
     char getNext();
-    int getNextAsNumber();
     char peekNext();
 
   private:

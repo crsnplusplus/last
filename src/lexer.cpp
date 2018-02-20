@@ -20,16 +20,6 @@ char Lexer::getNext()
   return val;
 }
 
-int Lexer::getNextAsNumber()
-{
-  consumeSpaces();
-  char next = getNext();
-  if (next > '9' || next < '0')
-    return -1;
-
-  return next - '0';
-}
-
 char Lexer::peekNext()
 {
   int maxSize = m_text.size();
