@@ -1,7 +1,6 @@
 #ifndef __LAST_INTERPRETER_H__
 #define __LAST_INTERPRETER_H__
 
-#include <assert.h>
 #include "node_ast.h"
 
 class Parser;

@@ -1,8 +1,6 @@
 #ifndef __LAST_NODE_AST_H__
 #define __LAST_NODE_AST_H__
 
-#include <assert.h>
-
 class NodeBinaryOperator;
 class NodeNumber;
 
