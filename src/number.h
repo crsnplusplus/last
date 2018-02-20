@@ -5,12 +5,12 @@
 
 class Number : public Production
 {
-public:
-  Number(Lexer& lex);
-  int getValue();
+  public:
+    Number(Lexer& lex);
+    int getValue();
 
-private:
-  int value;
+  private:
+    int value;
 };
 
 #endif // __LAST_NUMBER_H__

@@ -7,15 +7,15 @@ class Factor;
 
 class Unary : public Production
 {
-public:
-  Unary(Lexer& in);
-  virtual ~Unary();
+  public:
+    Unary(Lexer& in);
+    virtual ~Unary();
 
-  int getValue();
+    int getValue();
 
-private:
-  int sign;
-  Factor* value;
+  private:
+    int sign;
+    Factor* value;
 };
 
 #endif // __LAST_UNARY_H__

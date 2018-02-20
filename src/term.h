@@ -10,15 +10,15 @@ class Unary;
 
 class Term : public Production
 {
-public:
-  Term(Lexer& in);
-  virtual ~Term();
+  public:
+    Term(Lexer& in);
+    virtual ~Term();
 
-  int getValue();
+    int getValue();
 
-private:
-  std::deque<Unary*> values;
-  std::deque<char> ops;
+  private:
+    std::deque<Unary*> values;
+    std::deque<char> ops;
 };
 
 #endif // __LAST_TERM_H__

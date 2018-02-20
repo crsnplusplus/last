@@ -10,9 +10,9 @@ class ParseError : public std::exception {
 };
 
 class Production {
-public:
-  virtual ~Production();
-  virtual int getValue() = 0;
+  public:
+    virtual ~Production();
+    virtual int getValue() = 0;
 };
 
 #endif // __LAST_PRODUCTION_H__

@@ -8,15 +8,15 @@
 class Term;
 
 class Expression : public Production {
-public:
-  Expression(Lexer& lex);
-  virtual ~Expression();
+  public:
+    Expression(Lexer& lex);
+    virtual ~Expression();
 
-  int getValue();
+    int getValue();
 
-private:
-  std::deque<Term*> values;
-  std::deque<char> ops;
+  private:
+    std::deque<Term*> values;
+    std::deque<char> ops;
 };
 
 #endif __LAST_EXPRESSION_H__

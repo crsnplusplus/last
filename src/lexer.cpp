@@ -7,6 +7,10 @@ Lexer::Lexer(std::string& s)
 {
 }
 
+Lexer::~Lexer()
+{
+}
+
 char Lexer::getNext()
 {
   consumeSpaces();

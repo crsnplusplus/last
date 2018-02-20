@@ -5,14 +5,14 @@
 
 class Factor : public Production
 {
-public:
-  Factor(Lexer& lex);
-  virtual ~Factor();
+  public:
+    Factor(Lexer& lex);
+    virtual ~Factor();
 
-  int getValue();
+    int getValue();
 
-private:
-  Production * expr;
+  private:
+    Production* expr;
 };
 
 #endif // __LAST_FACTOR_H__

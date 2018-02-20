@@ -6,6 +6,8 @@
 class Lexer {
   public:
     Lexer(std::string& s);
+    virtual ~Lexer();
+
     char getNext();
     int getNextAsNumber();
     char peekNext();
