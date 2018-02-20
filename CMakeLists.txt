@@ -28,26 +28,29 @@ SET (LAST_INCLUDES
 include_directories(${LAST_INCLUDES})
 
 SET(SOURCE
-	src/expression.cpp
-	src/factor.cpp
+#	src/parse_tree/expression.cpp
+#	src/parse_tree/factor.cpp
+#	src/parse_tree/number.cpp
+#	src/parse_tree/production.cpp
+#	src/parse_tree/term.cpp
+#	src/parse_tree/unary.cpp
+	src/interpreter.cpp
 	src/lexer.cpp
-	src/number.cpp
 	src/parser.cpp
-	src/production.cpp
-	src/term.cpp
-	src/unary.cpp
 )
 
 SET(HEADERS
+#	src/parse_tree/expression.h
+#	src/parse_tree/factor.h
+#	src/parse_tree/number.h
+#	src/parse_tree/production.h
+#	src/parse_tree/term.h
+#	src/parse_tree/unary.h
 	src/ast_node.h
-	src/expression.h
-	src/factor.h
+	src/interpreter.h
+	src/last_exceptions.h
 	src/lexer.h
-	src/number.h
 	src/parser.h
-	src/production.h
-	src/term.h
-	src/unary.h
 )
 
 add_library(liblast

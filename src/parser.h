@@ -2,13 +2,8 @@
 #define __LAST_PARSER_H__
 
 #include "ast_node.h"
-#include <exception>
 
 class Lexer;
-
-class ParseException : public std::exception {
-  const char* what() const throw();
-};
 
 class Parser {
   public:

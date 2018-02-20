@@ -1,13 +1,9 @@
 #include "parser.h"
 #include "lexer.h"
 #include "ast_node.h"
+#include <last_exceptions.h>
 
 #include <assert.h>
-
-const char* ParseException::what() const throw() {
-  return "a parsing error occured";
-}
-
 
 Parser::Parser(Lexer* lex) : 
   m_lex(lex),
@@ -34,7 +30,14 @@ NodeAST* Parser::factor()
   char current = m_current;
 
   if (isdigit(current)) {
+    if (isdigit(m_lex->peekNext())) {
+      // next is digit too, throwing exception
+      // (only single digit is supporte)
+      throw ParseExceptionLiteralTooLong();
+    }
+
     eat(current);
+
     return new NodeNumber(current);
   }
   else if (current == '(') {
@@ -43,11 +46,15 @@ NodeAST* Parser::factor()
     eat(')');
     return node;
   }
+  else if (current == '-') {
+    // unary operator not supported
+    throw ParseExceptionUnaryMinusNotPermitted();
+  }
 
   return nullptr;
 }
 
-NodeAST * Parser::term()
+NodeAST* Parser::term()
 {
   assert(m_lex != nullptr);
   NodeAST* node = factor();
