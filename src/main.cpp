@@ -1,5 +1,5 @@
 // last: last abstract syntax tree
-#include <stdlib.h>
+#include <cstdlib>
 #include <iostream>
 
 #include <lastconfig.h>
@@ -36,12 +36,13 @@ int main (int argc, char *argv[])
     value = interpreter.evaluate(root);
     delete root;
   }
-  catch (LastException e) {
+  catch (LastException& e) {
     std::cout << e.what() << std::endl;
+    return EXIT_FAILURE;
   }
 
   std::cout << "Expression: " << expression
             << " equals to: " << value << std::endl;
 
-  return 0;
+  return EXIT_SUCCESS;
 }
