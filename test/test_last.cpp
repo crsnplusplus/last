@@ -10,6 +10,7 @@ std::string TEST_EXPRESSION_EMPTY = "";
 std::string TEST_EXPRESSION_FAIL1 = "-1";
 std::string TEST_EXPRESSION_FAIL2 = "-10";
 std::string TEST_EXPRESSION_FAIL3 = "42";
+std::string TEST_EXPRESSION_FAIL4 = "(4 + 2";
 std::string TEST_EXPRESSION_0DIV = "0/4";
 std::string TEST_EXPRESSION_DIV0 = "2/0";
 
@@ -28,7 +29,6 @@ TestData tests[] = {
     { "(4 + 5 * (7 - 3)) - 2", 22 }, // 6
     { "4 + 5 + 7 / 2", 12 } // 7
 };
-
 
 
 // runner
@@ -166,7 +166,7 @@ TEST(LastTest, InterpreterFail2)
 
   EXPECT_THROW({
     parser.parse();
-    }, ParseExceptionUnaryMinusNotPermitted);
+  }, ParseExceptionUnaryMinusNotPermitted);
 }
 
 TEST(LastTest, InterpreterFail3)
@@ -176,7 +176,7 @@ TEST(LastTest, InterpreterFail3)
 
   EXPECT_THROW({
     parser.parse();
-    }, ParseExceptionLiteralTooLong);
+  }, ParseExceptionLiteralTooLong);
 }
 
 TEST(LastTest, InterpreterFail0Div)
