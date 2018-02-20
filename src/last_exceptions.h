@@ -1,5 +1,5 @@
-#ifndef __LAST_EXCEPTIONS_H__
-#define __LAST_EXCEPTIONS_H__
+#ifndef __LAST_LAST_EXCEPTIONS_H__
+#define __LAST_LAST_EXCEPTIONS_H__
 
 #include <exception>
 
@@ -38,4 +38,4 @@ public:
   virtual const char* what() const throw() override;
 };
 
-#endif // __LAST_EXCEPTIONS_H__
+#endif // __LAST_LAST_EXCEPTIONS_H__
