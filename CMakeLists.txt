@@ -38,6 +38,7 @@ SET(SOURCE
 )
 
 SET(HEADERS
+	src/ast_node.h
 	src/expression.h
 	src/factor.h
 	src/lexer.h
