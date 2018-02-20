@@ -3,6 +3,7 @@
 
 #include <lexer.h>
 #include <expression.h>
+#include <parser.h>
 
 std::string TEST_EXPRESSION0 = "";
 std::string TEST_EXPRESSION1 = "1";
@@ -72,4 +73,13 @@ TEST(LastTest, ParseError2)
     Expression expr(lex);
     int value = expr.getValue();
     }, ParseError);
+}
+
+TEST(LastTest, Parser2)
+{
+  Lexer lex(TEST_EXPRESSION2);
+  Parser parser(&lex);
+  NodeAST* root = parser.parse();
+  delete root;
+  EXPECT_EQ(1, 1);
 }

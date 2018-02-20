@@ -11,8 +11,16 @@ class NodeBinaryOperator : public NodeAST {
     NodeBinaryOperator(NodeAST* left, char op, NodeAST* right) :
       m_left(left), m_op(op), m_right(right) { }
 
+    virtual ~NodeBinaryOperator() {
+      delete m_left;
+      delete m_right;
+
+      m_left = nullptr; // debug
+      m_right = nullptr;
+    }
+
   private:
-    NodeAST * m_left;
+    NodeAST* m_left;
     NodeAST* m_right;
     char m_op;
 };
@@ -20,6 +28,8 @@ class NodeBinaryOperator : public NodeAST {
 class NodeNumber : public NodeAST {
   public:
     NodeNumber(int value) : m_value(value) { }
+    virtual ~NodeNumber() { }
+
   private:
     int m_value;
 };

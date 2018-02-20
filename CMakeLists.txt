@@ -32,6 +32,7 @@ SET(SOURCE
 	src/factor.cpp
 	src/lexer.cpp
 	src/number.cpp
+	src/parser.cpp
 	src/production.cpp
 	src/term.cpp
 	src/unary.cpp
@@ -43,6 +44,7 @@ SET(HEADERS
 	src/factor.h
 	src/lexer.h
 	src/number.h
+	src/parser.h
 	src/production.h
 	src/term.h
 	src/unary.h
