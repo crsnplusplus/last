@@ -4,18 +4,18 @@
 
 Factor::Factor(Lexer& lex) {
   
-  if (lex.peekNext() == '(') { //check to see if a paren was used
+  if (lex.peekNext() == '(') {
     lex.getNext();
     expr = new Expression(lex);
 
-    if (lex.peekNext() != ')') { //make sure the paren was matched
+    if (lex.peekNext() != ')') {
       throw ParseError();
     }
     else {
       lex.getNext();
     }
   }
-  else { //if there is no paren then we just have a number
+  else {
     expr = new Number(lex);
   }
 }

@@ -4,12 +4,13 @@
 Unary::Unary(Lexer& lex) {
   sign = 1;
   
-  while (lex.peekNext() == '-' || lex.peekNext() == '+') { //while we have an operator to parse // @todo change if to while
-    if (lex.getNext() == '-') { //if the operator actully has an effect
+  while (lex.peekNext() == '-' || lex.peekNext() == '+') {
+    if (lex.getNext() == '-') {
       sign = -sign;
     }
   }
-  value = new Factor(lex); //parse the factor following the unary operators
+
+  value = new Factor(lex);
 }
 
 Unary::~Unary() {

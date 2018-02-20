@@ -2,11 +2,11 @@
 #include "unary.h"
 
 Term::Term(Lexer& lex) {
-  values.push_back(new Unary(lex)); //construct the first value
+  values.push_back(new Unary(lex));
   
   while (lex.peekNext() == '*' || lex.peekNext() == '/') {
-    ops.push_back(lex.getNext()); //push back the operator
-    values.push_back(new Unary(lex)); //push back the left operand
+    ops.push_back(lex.getNext());
+    values.push_back(new Unary(lex));
   }
 }
 
@@ -17,9 +17,9 @@ Term::~Term() {
 }
 
 int Term::getValue() {
-  int ret = values[0]->getValue(); //get the first value
-  for (unsigned int i = 1; i<values.size(); ++i) { //loop though the rest of the values
-    if (ops[i - 1] == '*') { //check to see which operator it is and preform the acoridng action
+  int ret = values[0]->getValue();
+  for (unsigned int i = 1; i<values.size(); ++i) {
+    if (ops[i - 1] == '*') {
       ret *= values[i]->getValue();
     }
     else {
