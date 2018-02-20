@@ -28,7 +28,7 @@ class InterpreterExceptionDividedByZero : public LastException {
     virtual const char* what() const throw() override;
 };
 
-class InterpreterOperatorNotSupported : public LastException {
+class InterpreterExceptionOperatorNotSupported : public LastException {
   public:
     virtual const char* what() const throw() override;
 };

@@ -23,12 +23,12 @@ const char* InterpreterExceptionDividedByZero::what() const throw()
   return "Division by zero";
 }
 
-const char * InterpreterOperatorNotSupported::what() const throw()
+const char* InterpreterExceptionOperatorNotSupported::what() const throw()
 {
   return "Operator not supported";
 }
 
-const char * InterpreterExceptionNothingToInterpret::what() const throw()
+const char* InterpreterExceptionNothingToInterpret::what() const throw()
 {
   return "Nothing to interpret";
 }

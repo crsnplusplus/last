@@ -39,7 +39,7 @@ int Interpreter::visit(NodeBinaryOperator* node)
       return lhs / rhs;
     }
     default:
-      throw InterpreterOperatorNotSupported();
+      throw InterpreterExceptionOperatorNotSupported();
   }
 
   return 0;
