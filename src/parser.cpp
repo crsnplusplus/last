@@ -1,7 +1,10 @@
 #include "parser.h"
+
 #include "lexer.h"
-#include "ast_node.h"
-#include <last_exceptions.h>
+#include "node_ast.h"
+#include "node_bop.h"
+#include "node_number.h"
+#include "last_exceptions.h"
 
 #include <assert.h>
 

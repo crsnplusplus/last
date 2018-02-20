@@ -2,7 +2,7 @@
 #define __LAST_INTERPRETER_H__
 
 #include <assert.h>
-#include "ast_node.h"
+#include "node_ast.h"
 
 class Parser;
 

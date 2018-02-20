@@ -4,7 +4,8 @@
 #include <exception>
 
 class LastException : public std::exception {
-  const char* what() const throw();
+  public:
+    const char* what() const throw();
 };
 
 class ParseException : public LastException {
@@ -20,6 +21,10 @@ class ParseExceptionLiteralTooLong : public LastException {
 };
 
 class InterpreterExceptionDividedByZero : public LastException {
+  const char* what() const throw();
+};
+
+class InterpreterOperatorNotSupported : public LastException {
   const char* what() const throw();
 };
 

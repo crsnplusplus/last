@@ -1,5 +1,7 @@
 #include "interpreter.h"
-#include "ast_node.h"
+#include "node_ast.h"
+#include "node_bop.h"
+#include "node_number.h"
 #include "parser.h"
 
 #include "last_exceptions.h"
@@ -33,9 +35,10 @@ int Interpreter::visit(NodeBinaryOperator* node)
       }
       return lhs / rhs;
     }
+    default:
+      throw InterpreterOperatorNotSupported();
   }
 
-  assert(false);
   return 0;
 }
 
