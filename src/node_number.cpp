@@ -1,5 +1,7 @@
 #include "node_number.h"
 
+#include <assert.h>
+
 NodeNumber::NodeNumber(char value)
   : m_value(value)
 {
