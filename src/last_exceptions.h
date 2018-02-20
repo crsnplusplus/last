@@ -5,27 +5,32 @@
 
 class LastException : public std::exception {
   public:
-    const char* what() const throw();
+    virtual const char* what() const throw();
 };
 
 class ParseException : public LastException {
-  const char* what() const throw();
+  public:
+    virtual const char* what() const throw() override;
 };
 
 class ParseExceptionUnaryMinusNotPermitted : public LastException {
-  const char* what() const throw();
+  public:
+    virtual const char* what() const throw() override;
 };
 
 class ParseExceptionLiteralTooLong : public LastException {
-  const char* what() const throw();
+  public:
+    virtual const char* what() const throw() override;
 };
 
 class InterpreterExceptionDividedByZero : public LastException {
-  const char* what() const throw();
+  public:
+    virtual const char* what() const throw() override;
 };
 
 class InterpreterOperatorNotSupported : public LastException {
-  const char* what() const throw();
+  public:
+    virtual const char* what() const throw() override;
 };
 
 #endif // __LAST_EXCEPTIONS_H__
