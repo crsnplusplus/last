@@ -1,8 +1,7 @@
 #ifndef __LAST_PARSER_H__
 #define __LAST_PARSER_H__
 
-#include "node_ast.h"
-
+class NodeAST;
 class Lexer;
 
 class Parser {
