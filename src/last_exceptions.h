@@ -33,4 +33,9 @@ class InterpreterOperatorNotSupported : public LastException {
     virtual const char* what() const throw() override;
 };
 
+class InterpreterExceptionNothingToInterpret : public LastException {
+public:
+  virtual const char* what() const throw() override;
+};
+
 #endif // __LAST_EXCEPTIONS_H__

@@ -27,3 +27,8 @@ const char * InterpreterOperatorNotSupported::what() const throw()
 {
   return "Operator not supported";
 }
+
+const char * InterpreterExceptionNothingToInterpret::what() const throw()
+{
+  return "Nothing to interpret";
+}

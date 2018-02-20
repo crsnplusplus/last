@@ -144,9 +144,10 @@ TEST(LastTest, InterpreterEmpty)
   Interpreter interpreter;
 
   NodeAST* root = parser.parse();
-  int value = interpreter.evaluate(root);
-
-  EXPECT_EQ(value, 0);
+  
+  EXPECT_THROW({
+    int value = interpreter.evaluate(root);
+  }, InterpreterExceptionNothingToInterpret);
 }
 
 TEST(LastTest, InterpreterFail1)

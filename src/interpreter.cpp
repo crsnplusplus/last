@@ -54,7 +54,7 @@ int Interpreter::visit(NodeNumber* node)
 int Interpreter::evaluate(NodeAST* root)
 {
   if (root == nullptr) // empty string?
-    return 0;
+    throw InterpreterExceptionNothingToInterpret();
 
   int value = root->accept(*this);
   return value;
