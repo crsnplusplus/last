@@ -9,8 +9,10 @@ class Parser;
 class Interpreter : public NodeVisitor {
   public:
     Interpreter();
-    virtual int visit(NodeBinaryOperator* node);
-    virtual int visit(NodeNumber* node);
+    virtual ~Interpreter();
+
+    virtual int visit(NodeBinaryOperator* node) override; // NodeVisitor
+    virtual int visit(NodeNumber* node) override; // NodeVisitor
     
     int evaluate(NodeAST* root);
 

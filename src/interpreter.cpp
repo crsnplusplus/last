@@ -3,12 +3,15 @@
 #include "node_bop.h"
 #include "node_number.h"
 #include "parser.h"
-
 #include "last_exceptions.h"
 
 #include <assert.h>
 
 Interpreter::Interpreter()
+{
+}
+
+Interpreter::~Interpreter()
 {
 }
 
