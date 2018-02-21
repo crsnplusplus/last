@@ -17,7 +17,7 @@ int NodeNumber::accept(NodeVisitor& v)
 }
 
 int NodeNumber::getValue() const {
-  if (m_value >= '0' && m_value < '9')
+  if (m_value >= '0' && m_value <= '9')
     return m_value - '0';
 
   assert(false);
