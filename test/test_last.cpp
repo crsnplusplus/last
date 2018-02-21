@@ -180,7 +180,7 @@ TEST(LastTest, InterpreterFail3)
   }, ParseExceptionLiteralTooLong);
 }
 
-TEST(LastTest, InterpreterFail0Div)
+TEST(LastTest, Interpreter0Div)
 {
   Lexer lex(TEST_EXPRESSION_0DIV);
   Parser parser(&lex);
@@ -192,7 +192,7 @@ TEST(LastTest, InterpreterFail0Div)
   EXPECT_EQ(value, 0);
 }
 
-TEST(LastTest, InterpreterFailDiv0)
+TEST(LastTest, InterpreterDiv0)
 {
   Lexer lex(TEST_EXPRESSION_DIV0);
   Parser parser(&lex);
