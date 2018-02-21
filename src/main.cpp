@@ -1,8 +1,13 @@
 // last: last abstract syntax tree
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <cstdlib>
+#include <iostream>
+
 #include <lastconfig.h>
+
+#include <lexer.h>
+#include <parser.h>
+#include <interpreter.h>
+#include <last_exceptions.h>
  
 int main (int argc, char *argv[])
 {
@@ -12,11 +17,32 @@ int main (int argc, char *argv[])
             last_VERSION_MAJOR,
             last_VERSION_MINOR);
     fprintf(stdout,"Usage: %s number\n",argv[0]);
-    return 1;
+    return EXIT_FAILURE;
   }
-  
-  double inputValue = atof(argv[1]);
-  double outputValue = sqrt(inputValue);
-  fprintf(stdout,"The square root of %g is %g\n", inputValue, outputValue);
-  return 0;
+
+  std::string expression;
+  // collecting args
+  for (int i = 1; i < argc; ++i) {
+    expression += *(argv + i);
+  }
+
+  Lexer lex(expression);
+  Parser parser(&lex);
+  Interpreter interpreter;
+  int value = 0;
+
+  try {
+    NodeAST* root = parser.parse();
+    value = interpreter.evaluate(root);
+    delete root;
+  }
+  catch (LastException& e) {
+    std::cout << e.what() << std::endl;
+    return EXIT_FAILURE;
+  }
+
+  std::cout << "Expression: " << expression
+            << " equals to: " << value << std::endl;
+
+  return EXIT_SUCCESS;
 }

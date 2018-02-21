@@ -3,8 +3,8 @@ set(PROJECT_NAME last)
 project (${PROJECT_NAME})
 
 # The version number.
-set (last_VERSION_MAJOR 0)
-set (last_VERSION_MINOR 1)
+set (last_VERSION_MAJOR 1)
+set (last_VERSION_MINOR 0)
 
 # configure a header file to pass some of the CMake settings to the source code
 configure_file (
@@ -28,17 +28,22 @@ SET (LAST_INCLUDES
 include_directories(${LAST_INCLUDES})
 
 SET(SOURCE
-	src/last_ast.cpp
-	src/last_evaluator.cpp
-	src/last_parser.cpp
-	src/last_token.cpp
-	)
+	src/interpreter.cpp
+	src/lexer.cpp
+	src/last_exceptions.cpp
+	src/node_bop.cpp
+	src/node_number.cpp
+	src/parser.cpp
+)
 
 SET(HEADERS
-	src/last_ast.h
-	src/last_evaluator.h
-	src/last_parser.h
-	src/last_token.h
+	src/interpreter.h
+	src/last_exceptions.h
+	src/lexer.h
+	src/node_ast.h
+	src/node_bop.h
+	src/node_number.h
+	src/parser.h
 )
 
 add_library(liblast
