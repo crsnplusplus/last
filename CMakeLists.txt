@@ -6,6 +6,9 @@ project (${PROJECT_NAME})
 set (last_VERSION_MAJOR 1)
 set (last_VERSION_MINOR 0)
 
+# adds support to c++11
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11") 
+
 # configure a header file to pass some of the CMake settings to the source code
 configure_file (
   "${PROJECT_SOURCE_DIR}/src/lastconfig.h.in"
