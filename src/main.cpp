@@ -31,18 +31,24 @@ int main (int argc, char *argv[])
   Interpreter interpreter;
   int value = 0;
 
+  NodeAST* root = nullptr;
+
   try {
-    NodeAST* root = parser.parse();
+    root = parser.parse();
     value = interpreter.evaluate(root);
-    delete root;
   }
   catch (LastException& e) {
     std::cout << e.what() << std::endl;
+
+    delete root;
+
     return EXIT_FAILURE;
   }
 
   std::cout << "Expression: " << expression
             << " equals to: " << value << std::endl;
+
+  delete root;
 
   return EXIT_SUCCESS;
 }
